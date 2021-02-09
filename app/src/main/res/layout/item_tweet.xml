@@ -22,7 +22,7 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="0dp"
         android:layout_toEndOf="@+id/ivProfileImage"
-        tools:text="KatoCaughtSlippin" />
+        tools:text="Username" />
 
     <TextView
         android:id="@+id/tvBody"
@@ -34,6 +34,6 @@
         android:layout_marginTop="2dp"
         android:layout_toEndOf="@+id/ivProfileImage"
 
-        tools:text="Damn yungblood, you know they dun caught me slippin" />
+        tools:text="Here goes the users tweet body. It has a lot of text, and talks about an idea in 140 chars." />
 
 </RelativeLayout>

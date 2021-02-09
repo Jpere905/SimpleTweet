@@ -7,12 +7,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-// our goal is to turn a JSON tweet data into a java object
+// our goal is to turn a JSON object that represents a tweet, into a java object
 public class Tweet {
 
     public String body;         // the body of our tweet
     public String createdAt;    // timestamp of tweet
     public User user;
+
 
     public static Tweet fromJson(JSONObject jsonObject) throws JSONException {
 

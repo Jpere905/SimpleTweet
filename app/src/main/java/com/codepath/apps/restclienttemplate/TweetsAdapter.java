@@ -34,14 +34,6 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         return new ViewHolder(view);
     }
 
-    // pass in the context and list of tweets
-    @Override
-    public int getItemCount() {
-
-        return tweets.size();
-    }
-
-
     // bind values based on position of the element
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
@@ -50,6 +42,26 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
 
         // bind the tweet with view holder
         holder.bind(tweet);
+    }
+
+    // pass in the context and list of tweets
+    @Override
+    public int getItemCount() {
+
+        return tweets.size();
+    }
+
+    // used for the pull to refresh feature
+    // clears all elements from the recycler
+    public void clear() {
+        tweets.clear();
+        notifyDataSetChanged();
+    }
+
+    // adds a refreshed list of tweets
+    public void addAll(List<Tweet> tweetList){
+        tweets.addAll(tweetList);
+        notifyDataSetChanged();
     }
 
     // define a viewholder
