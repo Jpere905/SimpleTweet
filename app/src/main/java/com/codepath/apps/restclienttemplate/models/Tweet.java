@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+
 // our goal is to turn a JSON object that represents a tweet, into a java object
 public class Tweet {
 
@@ -34,6 +35,11 @@ public class Tweet {
         }
 
         return tweetList;
+    }
+
+    public static String getFormattedTimestamp(String createdAt) {
+
+        return TimeFormatter.getTimeDifference(createdAt);
     }
 
 }

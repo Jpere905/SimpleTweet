@@ -71,6 +71,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         ImageView ivProfileImage;
         TextView tvBody;
         TextView tvScreenName;
+        TextView tvTimestamp;
 
         // itemView is a representation of ONE row in the RecyclerView
         // i.e. 1 tweet
@@ -79,13 +80,17 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             tvBody = itemView.findViewById(R.id.tvBody);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
+            tvTimestamp = itemView.findViewById(R.id.tvTimestamp);
 
         }
 
+        // this is where data is placed for each tweet seen in the final application
+        //
         public void bind(Tweet tweet) {
 
             tvBody.setText(tweet.body);
             tvScreenName.setText(tweet.user.screenName);
+            tvTimestamp.setText(Tweet.getFormattedTimestamp(tweet.createdAt));
             Glide.with(context).load(tweet.user.profileImageURL).into(ivProfileImage);
         }
     }
