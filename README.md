@@ -18,7 +18,7 @@ The following **required** functionality is completed:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='gif_showcase.gif' title='Video Walkthrough' width='250px' alt='Video Walkthrough' />
+<img src='app_showcase.gif' title='Video Walkthrough' width='250px' alt='Video Walkthrough' />
 
 
 ## Open-source libraries used
