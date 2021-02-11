@@ -3,6 +3,7 @@ package com.codepath.apps.restclienttemplate;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -104,19 +105,27 @@ public class ComposeActivity extends AppCompatActivity {
         // listen for any changes in text and keep a live count of num chars in compose body
         etCompose.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
 
             @Override
             public void afterTextChanged(Editable s) {
                 //Toast.makeText(ComposeActivity.this, "afterTextChanged", Toast.LENGTH_SHORT).show();
                 tvCharCount.setText(etCompose.length() + "/280");
+                if (etCompose.length() > 280 ){
+                    //Toast.makeText(ComposeActivity.this, "passed 280", Toast.LENGTH_SHORT).show();
+                    tvCharCount.setTextColor(Color.parseColor("#fb5419"));
+                    btnTweet.setClickable(false);
+                    //btnTweet.setBackgroundColor(Color.RED);
+
+                }
+                else {
+                    tvCharCount.setTextColor(Color.parseColor("#6c6c6c"));
+                    btnTweet.setClickable(true);
+                    //btnTweet.setBackgroundColor(Color.RED);
+                }
             }
         });
 
