@@ -1,12 +1,17 @@
 package com.codepath.apps.restclienttemplate;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.codepath.apps.restclienttemplate.models.Tweet;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
@@ -20,9 +25,16 @@ import java.util.List;
 
 import okhttp3.Headers;
 
+
+// initializes all of the components needed to display a screen
+// including data, views
+// EVERY activity will always have a onCreate method, always
 public class TimelineActivity extends AppCompatActivity {
 
     public static final String TAG = "TimeLineActivity";
+    // this code is used for passing data from one activity to another
+    // can be any value, used to determine result type later
+    private final int REQUEST_CODE = 20;
     // instance variable. defining it here will allow us to use it in multiple methods
     TwitterClient client;
     RecyclerView rvTweets;
@@ -60,6 +72,46 @@ public class TimelineActivity extends AppCompatActivity {
         rvTweets.setLayoutManager(new LinearLayoutManager(this));
         rvTweets.setAdapter(adapter);
         populateHomeTimeline();
+    }
+
+    @Override
+    // related to creating the actionbar that will allow users to create a tweet
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    // how do you know which item the user clicked in the action menu?
+    // menu item that is tapped is passed into the method and the id of the item will be checked
+    // with switch statements which, on a match, will execute the desired action
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        // checks if user tapped on compose tweet icon
+        if (item.getItemId() == R.id.compose) {
+            // compose icon has been selected
+            //Toast.makeText(this, "Compose!", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, ComposeActivity.class);
+            startActivityForResult(intent, REQUEST_CODE);
+            // navigate to compose activity
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+    // this method will notify us of when the user submits a tweet in the compose page
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_OK){
+            // get data from intent (the composed tweet)
+
+            // update RV with new tweet
+
+            //
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     // this is where the request will be made to receive JSON data
